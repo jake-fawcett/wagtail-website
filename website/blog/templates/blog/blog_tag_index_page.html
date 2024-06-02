@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/website.css' %}">
+<link rel="stylesheet" href="{% static 'css/blog_tag_index_page.css' %}?version=1.1">
+{% endblock extra_css %}
+
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+    {% if request.GET.tag %}
+        <h4>Showing pages tagged "{{ request.GET.tag }}"</h4>
+    {% endif %}
+
+    {% for blogpage in blogpages %}
+          <p>
+              <strong><a class="url" href="{% pageurl blogpage %}">{{ blogpage.title }}</a></strong><br />
+              {{ blogpage.intro }}<br />
+          </p>
+    {% empty %}
+        <p>No pages found with that tag.</p>
+    {% endfor %}
+
+{% endblock %}

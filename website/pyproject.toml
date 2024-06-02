@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "webapp"
+version = "0.1.0"
+description = ""
+authors = ["jake-fawcett <jakefawcett2298@hotmail.co.uk>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.8"
+wagtail = "^6.1.1"
+django = "4.2.13"
+gunicorn = "20.0.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

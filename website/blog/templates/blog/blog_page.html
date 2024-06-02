@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/website.css' %}">
+<link rel="stylesheet" href="{% static 'css/blog_page.css' %}?version=1.0">
+{% endblock extra_css %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-blogpage{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <h1>{{ page.title }}</h1>
+        {% with tags=page.tags.all %}
+            {% if tags %}
+            <div class="tags">
+                <p>
+                    <b>Date: </b>{{ page.date }} &emsp;
+                    <b>Tags: </b>
+                    {% for tag in tags %}
+                        <a href="{% slugurl 'tags' %}?tag={{ tag }}">{{ tag }} &nbsp</a>
+                    {% endfor %}
+                </p>
+            </div>
+            {% endif %}
+        {% endwith %}
+
+        <div class="intro">{{ page.intro }}</div>
+
+        <div class="body">{{ page.body|richtext }}</div>
+    </div>
+{% endblock %}
